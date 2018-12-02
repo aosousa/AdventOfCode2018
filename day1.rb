@@ -1,39 +1,36 @@
 require './utils'
 
 def part1(input)
-    return input.readlines().map(&:to_i).sum()
+    input.readlines.map(&:to_i).sum
 end
 
 def part2(input)
     frequencies = Array.new
     frequency = 0
-    foundDuplicate = false
-    
+    found_duplicate = false
+
     # go back to the start of the file
-    input.rewind()
+    input.rewind
 
     # create an array of integers directly from the numbers inside the input file
-    inputNums = input.readlines().map(&:to_i)
+    input_nums = input.readlines.map(&:to_i)
 
-    until foundDuplicate
-        for num in inputNums do
+    until found_duplicate
+        input_nums.each {|num|
             frequency += num
             if frequencies.include? frequency
-                foundDuplicate = true
+                found_duplicate = true
                 break
             else
-                frequencies.push(frequency)                
+                frequencies.push(frequency)
             end
-        end
+        }
     end
 
-    return frequency
+    frequency
 end
 
-def solution
-    input = get_input("day1.txt")
+input = get_input("day1.txt")
 
-    return part1(input), part2(input)
-end
-
-puts solution
+puts "Frequency after changes: #{part1(input)}"
+puts "First duplicate frequency: #{part2(input)}"
