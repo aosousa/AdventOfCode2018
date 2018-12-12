@@ -60,11 +60,11 @@ def part1(grid)
 	width = 3
 
 	# iterate every 3rd row and column
-	(0..299).step(width) do | r |
-		(0..299).step(width) do | c |
+	(1..298).each do | r |
+		(1..298).each do | c |
 			first_row, last_row, first_col, last_col = r, r - 1 + width, c, c - 1 + width
 			square_power = calculate_square_total_power(grid, first_row, last_row, first_col, last_col)
-			if square_power >= total_power
+			if square_power > total_power
 				total_power = square_power
 				x, y = first_row, first_col
 			end
@@ -85,12 +85,12 @@ def part2(grid)
 		last_index = 300 - (size - 1)
 
 		# loop rows
-		(1..last_index).each do | r |#
+		(1..last_index).each do | r |
 			# loop columns
 			(1..last_index).each do | c |
 				first_row, last_row, first_col, last_col = r, r - 1 + size, c, c - 1 + size
 				square_power = calculate_square_total_power(grid, first_row, last_row, first_col, last_col)
-				if square_power >= total_power
+				if square_power > total_power
 					total_power = square_power
 					x, y, s = first_row, first_col, size
 				end
