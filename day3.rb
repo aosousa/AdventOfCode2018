@@ -5,7 +5,7 @@ def part1(input)
 	fabric = Array.new(1000) { Array.new(1000, 0)}
 
 	# create array of MatchData objects from the lines in the input file
-	input_array = input.readlines.map do |line|
+	input_array = input.split("\n").map do |line|
 		line.match(/#(\d+) @ (\d+),(\d+): (\d+)x(\d+)/)
 	end
 

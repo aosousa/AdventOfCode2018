@@ -4,7 +4,7 @@ def part1(input)
 	two_letter_counter = 0
 	three_letter_counter = 0
 
-	input.readlines.each do |line|
+	input.each do | line |
 		found_two_letter_occurrence = false
 		found_three_letter_occurrence = false
 
@@ -23,29 +23,23 @@ def part1(input)
 end
 
 def part2(input)
-	# go back to the start of the file
-	input.rewind
-
-	# create array of strings from the lines in the input file
-	input_array = input.readlines.map(&:to_s)
-
 	# loop through pairs of lines
-	input_array.combination(2) do |line1, line2|
+	input.map(&:to_s).combination(2) do | line1, line2 |
 		correct_letters = ""
 		differences = 0
-		for i in 0..(line1.length - 1) do
+		(0..(line1.length - 1)).each {|i|
 			if line1[i] != line2[i]
 				differences += 1
 			else
 				correct_letters += line1[i]
 			end
-		end
+		}
 
 		return correct_letters if differences == 1
 	end
 end
 
-input = get_input("day2.txt")
+input = get_input("day2.txt").split
 
 puts "Checksum: #{part1(input)}"
 puts "Common letters between the two correct box IDs: #{part2(input)}"
